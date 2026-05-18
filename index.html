@@ -1,1 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nova Wellness</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  min-height:100vh;
+  font-family:'Inter',sans-serif;
+  background:
+    radial-gradient(circle at top left,#d9eadf 0%,transparent 35%),
+    radial-gradient(circle at bottom right,#f1d9c9 0%,transparent 35%),
+    linear-gradient(135deg,#f7f3ea,#e9efe7);
+  color:#283528;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:30px;
+}
+
+.app{
+  width:390px;
+  min-height:720px;
+  background:rgba(255,255,255,0.72);
+  backdrop-filter:blur(18px);
+  border-radius:38px;
+  box-shadow:0 30px 80px rgba(80,80,60,0.18);
+  padding:34px 28px;
+  position:relative;
+  overflow:hidden;
+}
+
+.logo{
+  text-align:center;
+  font-family:'Playfair Display',serif;
+  font-size:34px;
+  letter-spacing:1px;
+  margin-bottom:8px;
+}
+
+.tagline{
+  text-align:center;
+  font-size:13px;
+  opacity:0.65;
+  margin-bottom:34px;
+}
+
+.progress{
+  height:5px;
+  background:#e2ded3;
+  border-radius:20px;
+  margin-bottom:34px;
+  overflow:hidden;
+}
+
+.progress-fill{
+  height:100%;
+  width:0%;
+  background:#7f9f7c;
+  border-radius:20px;
+  transition:0.4s ease;
+}
+
+.screen{
+  display:none;
+  animation:fadeSlide 0.5s ease;
+}
+
+.screen.active{
+  display:block;
+}
+
+.hello{
+  font-size:14px;
+  opacity:0.7;
+  margin-bottom:14px;
+}
+
+h1{
+  font-family:'Playfair Display',serif;
+  font-size:38px;
+  line-height:1.1;
+  font-weight:500;
+  margin-bottom:16px;
+}
+
+p{
+  font-size:15px;
+  line-height:1.7;
+  opacity:0.78;
+  margin-bottom:26px;
+}
+
+input{
+  width:100%;
+  padding:16px 18px;
+  border:none;
+  border-radius:18px;
+  background:#f2eee5;
+  font-size:15px;
+  outline:none;
+  margin-bottom:18px;
+  color:#283528;
+}
+
+.options{
+  display:grid;
+  gap:12px;
+  margin-bottom:26px;
+}
+
+.option{
+  padding:16px;
+  border-radius:20px;
+  border:1px solid rgba(80,100,70,0.18);
+  background:rgba(255,255,255,0.55);
+  cursor:pointer;
+  transition:0.25s ease;
+  font-size:15px;
+}
+
+.option:hover,
+.option.selected{
+  background:#dfead8;
+  transform:translateY(-2px);
+}
+
+.phone-mock{
+  height:170px;
+  border-radius:30px;
+  background:
+    linear-gradient(160deg,#c7d8bd,#f3e4d7);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:30px 0;
+  font-family:'Playfair Display',serif;
+  font-size:42px;
+  color:#fff;
+  box-shadow:inset 0 0 40px rgba(255,255,255,0.25);
+}
+
+.btns{
+  display:flex;
+  gap:12px;
+  position:absolute;
+  bottom:28px;
+  left:28px;
+  right:28px;
+}
+
+button{
+  flex:1;
+  border:none;
+  padding:15px;
+  border-radius:20px;
+  font-size:15px;
+  cursor:pointer;
+  transition:0.25s ease;
+}
+
+.primary{
+  background:#6f8f6c;
+  color:white;
+}
+
+.secondary{
+  background:#eee7dc;
+  color:#384638;
+}
+
+button:hover{
+  transform:translateY(-2px);
+  opacity:0.9;
+}
+
+.success{
+  text-align:center;
+  padding-top:80px;
+}
+
+.success-icon{
+  width:90px;
+  height:90px;
+  background:#dfead8;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin:0 auto 28px;
+  font-size:40px;
+}
+
+@keyframes fadeSlide{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+@media(max-width:500px){
+  .app{
+    width:100%;
+    min-height:680px;
+  }
+
+  h1{
+    font-size:32px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <div class="logo">Nova</div>
+  <div class="tagline">wellness begins with small rituals</div>
+
+  <div class="progress">
+    <div class="progress-fill" id="progress"></div>
+  </div>
+
+  <div class="screen active">
+    <h1>Wellness starts with you.</h1>
+    <p>Create a personalized wellness experience built around your goals, habits, and daily rhythm.</p>
+    <div class="phone-mock">Nova</div>
+    <input id="nameInput" placeholder="Enter your first name">
+  </div>
+
+  <div class="screen">
+    <div class="hello"></div>
+    <h1>What brings you to Nova?</h1>
+    <p>Select the goals that feel most aligned with your wellness journey.</p>
+    <div class="options">
+      <div class="option">Reduce stress</div>
+      <div class="option">Improve sleep</div>
+      <div class="option">Build healthy habits</div>
+      <div class="option">Feel more balanced</div>
+    </div>
+  </div>
+
+  <div class="screen">
+    <div class="hello"></div>
+    <h1>How active are you?</h1>
+    <p>This helps Nova understand your current lifestyle and suggest better routines.</p>
+    <div class="options">
+      <div class="option">Beginner</div>
+      <div class="option">Lightly active</div>
+      <div class="option">Moderately active</div>
+      <div class="option">Very active</div>
+    </div>
+  </div>
+
+  <div class="screen">
+    <div class="hello"></div>
+    <h1>Choose your wellness focus.</h1>
+    <p>Nova adapts your experience based on what you want to prioritize.</p>
+    <div class="options">
+      <div class="option">Mindfulness</div>
+      <div class="option">Nutrition</div>
+      <div class="option">Movement</div>
+      <div class="option">Sleep care</div>
+    </div>
+  </div>
+
+  <div class="screen">
+    <div class="hello"></div>
+    <h1>Daily reminders?</h1>
+    <p>Gentle reminders can help you stay consistent without feeling overwhelmed.</p>
+    <div class="options">
+      <div class="option">Morning reminder</div>
+      <div class="option">Evening check-in</div>
+      <div class="option">Weekly reflection</div>
+      <div class="option">No reminders</div>
+    </div>
+  </div>
+
+  <div class="screen">
+    <div class="hello"></div>
+    <h1>Create your profile.</h1>
+    <p>Add a few details so Nova can personalize your wellness dashboard.</p>
+    <input placeholder="Age">
+    <input placeholder="Wellness goal">
+    <input placeholder="Preferred routine time">
+  </div>
+
+  <div class="screen success">
+    <div class="success-icon">✓</div>
+    <h1>You’re all set.</h1>
+    <p id="finalMessage">Your personalized Nova wellness journey is ready.</p>
+  </div>
+
+  <div class="btns">
+    <button class="secondary" onclick="prevScreen()">Back</button>
+    <button class="primary" onclick="nextScreen()">Next</button>
+  </div>
+
+</div>
+
+<script>
+let current = 0;
+let userName = "";
+const screens = document.querySelectorAll(".screen");
+const progress = document.getElementById("progress");
+
+function updateScreen(){
+  screens.forEach((screen, index) => {
+    screen.classList.toggle("active", index === current);
+  });
+
+  progress.style.width = ((current) / (screens.length - 1)) * 100 + "%";
+
+  document.querySelectorAll(".hello").forEach(el => {
+    el.textContent = userName ? `Hey, ${userName} 👋` : "Hey there 👋";
+  });
+
+  if(current === screens.length - 1){
+    document.querySelector(".primary").style.display = "none";
+    document.getElementById("finalMessage").textContent =
+      userName ? `${userName}, your personalized Nova wellness journey is ready.` :
+      "Your personalized Nova wellness journey is ready.";
+  } else {
+    document.querySelector(".primary").style.display = "block";
+  }
+}
+
+function nextScreen(){
+  if(current === 0){
+    const input = document.getElementById("nameInput").value.trim();
+    if(input){
+      userName = input;
+    }
+  }
+
+  if(current < screens.length - 1){
+    current++;
+    updateScreen();
+  }
+}
+
+function prevScreen(){
+  if(current > 0){
+    current--;
+    updateScreen();
+  }
+}
+
+document.querySelectorAll(".option").forEach(option => {
+  option.addEventListener("click", () => {
+    option.classList.toggle("selected");
+  });
+});
+
+updateScreen();
+</script>
+
+</body>
+</html>
